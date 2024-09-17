@@ -1,0 +1,12 @@
+# Ignore virtual environment
+myvenv/
+
+# Ignore Python egg info
+Funny_Gates.egg-info/
+
+# Ignore other temporary or build files
+*.pyc
+__pycache__/
+
+# Ignore the local tests
+tests/
