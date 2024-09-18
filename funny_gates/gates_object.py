@@ -1,5 +1,5 @@
-from funny_gates.gates import basic_gates as bg
-from funny_gates.gates import advanced_gates as ag
+import funny_gates.gates.basic_gates as bg
+import funny_gates.gates.advanced_gates as ag
 
 class Gates:
     def __init__(self, func, inputs, outputs):
