@@ -35,7 +35,7 @@ def FA_gate(*args):
         *args: Either three integers (0 or 1) or a single list containing three integers.
         
     Returns:
-        int: The result of the Half-Adder operation; (Value, Carry).
+        int: The result of the Full-Adder operation; (Value, Carry).
     """
     
     #checks that inputs have the proper form
