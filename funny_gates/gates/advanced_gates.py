@@ -1,3 +1,5 @@
+from funny_gates.gates.basic_gates import AND_gate, OR_gate, XOR_gate, NOT_gate, NAND_gate, NOR_gate
+
 def HA_gate(*args):
     """
     Computes the Half-Adder operation for three binary inputs.
@@ -92,7 +94,7 @@ def TOF_gate(*args):
         raise ValueError("All inputs must be binary (0 or 1)")
         
     #Performs operation
-    gate1 = AND(inputs[0],inputs[1])
-    gate2 = XOR(gate1,inputs[2])
+    gate1 = AND_gate(inputs[0],inputs[1])
+    gate2 = XOR_gate(gate1,inputs[2])
     
     return inputs[0],inputs[1],gate2
