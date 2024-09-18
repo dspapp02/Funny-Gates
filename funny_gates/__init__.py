@@ -1,1 +1,1 @@
-from .gates import NOT, AND, OR, XOR, NOR, NAND, HA, FA, TOF
+from funny_gates.gates_object import NOT, AND, OR, XOR, NOR, NAND, HA, FA, TOF
