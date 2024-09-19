@@ -11,6 +11,6 @@ __pycache__/
 # Ignore the local tests
 tests/
 
-#Ignore Jupyter notebooks
+#Ignore Jupyter notebooks, in case these are used for testing
 *.ipynb_checkpoints/
 *.ipynb

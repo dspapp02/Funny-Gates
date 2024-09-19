@@ -1,5 +1,6 @@
 import funny_gates.gates.basic_gates as bg
 import funny_gates.gates.advanced_gates as ag
+import pandas as pd
 
 class Gates:
     def __init__(self, func, inputs, outputs):
@@ -9,6 +10,20 @@ class Gates:
         
     def __call__(self,*args):
         return self.func(*args)
+    
+    @property
+    def truth(self):
+        numbers = [x for x in range(2**self.inputs)]
+        bits = [format(i, f"0{self.inputs}b") for i in numbers]
+        outputs = [self.func(x) for x in bits]
+        
+        
+        truth_table = pd.DataFrame({
+        'Inputs': bits,
+        'Outputs': outputs})
+        
+        print(truth_table.to_string(index = False))
+    
         
         
         

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0] - 2024-09-19
+### Added
+- Truth attribute to gate class
+- Input_checker function to streamline checking inputs
+- Pandas installation is now required
+
 ## [0.2.0] - 2024-09-18
 ### Added
 - Gate class and simple functionality.
@@ -13,3 +19,8 @@
 ## [0.1.0] - 2024-09-17
 ### Added
 - Initial release with basic gate functions.
+
+# Upcoming changes
+- Documentation
+- More gates
+- Building gates
