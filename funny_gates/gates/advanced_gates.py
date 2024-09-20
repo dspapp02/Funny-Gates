@@ -12,7 +12,7 @@ def NOR_gate(*args):
         *args: Either two integers (0 or 1) or a single list/string containing two integers.
         
     Returns:
-        tuple: The result of the NOR operation (0 or 1).
+        int: The result of the NOR operation (0 or 1).
     """
     #checks that the inputs have a valid form
     inputs = input_checker(args)
@@ -28,7 +28,7 @@ def NAND_gate(*args):
         *args: Either two integers (0 or 1) or a single list/string containing two integers.
         
     Returns:
-        tuple: The result of the NAND operation (0 or 1).
+        int: The result of the NAND operation (0 or 1).
     """
     #checks that the inputs have a valid form
     inputs = input_checker(args)

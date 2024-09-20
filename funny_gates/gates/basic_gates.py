@@ -60,7 +60,7 @@ def AND_gate(*args):
         *args: Either two integers (0 or 1) or a single list/string containing two integers.
         
     Returns:
-        tuple: The result of the AND operation (0 or 1).
+        int: The result of the AND operation (0 or 1).
     """
     #checks that the inputs have a valid form
     inputs = input_checker(args)
@@ -77,7 +77,7 @@ def OR_gate(*args):
         *args: Either two integers (0 or 1) or a single list/string containing two integers.
         
     Returns:
-        tuple: The result of the OR operation (0 or 1).
+        int: The result of the OR operation (0 or 1).
     """
     #checks that the inputs have a valid form
     inputs = input_checker(args)
@@ -94,7 +94,7 @@ def XOR_gate(*args):
         *args: Either two integers (0 or 1) or a single list/string containing two integers.
         
     Returns:
-        tuple: The result of the XOR operation (0 or 1).
+        int: The result of the XOR operation (0 or 1).
     """
     #checks that the inputs have a valid form
     inputs = input_checker(args)
