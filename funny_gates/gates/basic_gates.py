@@ -1,56 +1,25 @@
-def input_checker(*args):
-    """Used to determine the validity of the inputs into a gate"""
-    args = args[0]
-    #Checks that the arguments are of valid form
-    if len(args) == 1 and isinstance(args[0], list):
-        inputs = args[0]
-    elif all(isinstance(x, int) for x in args):
-        inputs = args
-    elif len(args) == 1 and isinstance(args[0],str):
-        inputs = [int(x) for x in args[0]]
-    else:
-        raise ValueError("Inputs must be integers or integers in list/string")
-    
-    #checks that the inputs are binary
-    if any(x not in (0,1) for x in inputs):
-        raise ValueError("All inputs must be binary (0 or 1)")
-        
-    return inputs
+from funny_gates.helper_functions import input_checker
 
 def Identity_gate(*args):
     """
-    Computes the identity operation for a one bit gate
+    Flexible gate. 
+    Computes the identity operation for any number of bits. 
     
     Args:
-        *args: Integer (0 or 1).
+        *args: Any number of integers (0 and 1) or a single list/string containing these integers. 
         
     Returns:
-        int: The input to the gate.
+        tuple: The input to the gate.
     """
-    #Checks that the arguments are of valid form
-    if len(args) == 1 and isinstance(args[0], list):
-        if len(args[0])!=1:
-            raise ValueError("Requires one (1) input bits")
-        inputs = args[0][0]
-    elif len(args) == 1 and isinstance(args[0],int):
-        if len(args)!=1:
-            raise ValueError("Requires one (1) input bits")
-        inputs = args[0]
-    elif len(args) == 1 and isinstance(args[0],str):
-        inputs = int(args[0])
-    else:
-        raise ValueError("Inputs must be integers or integers in list/string")
+    inputs = input_checker(args)
         
-    #checks that inputs are binary
-    if inputs not in (0,1):
-        raise ValueError("All inputs must be binary (0 or 1)")
-        
-    #performs operation
-    return inputs
+    return tuple(inputs)
+
 
 def NOT_gate(*args):
     """
-    Computes the NOT operation
+    Fixed gate.
+    Computes the NOT for a single bit
     
     Args:
         *args: Integer (0 or 1).
@@ -58,122 +27,78 @@ def NOT_gate(*args):
     Returns:
         int: The result of the NOT operation (0 or 1).
     """
-    #Checks that the arguments are of valid form
-    if len(args) == 1 and isinstance(args[0], list):
-        if len(args[0])!=1:
-            raise ValueError("Requires one (1) input bits")
-        inputs = args[0][0]
-    elif len(args) == 1 and isinstance(args[0],int):
-        if len(args)!=1:
-            raise ValueError("Requires one (1) input bits")
-        inputs = args[0]
-    elif len(args) == 1 and isinstance(args[0],str):
-        inputs = int(args[0])
-    else:
-        raise ValueError("Inputs must be integers or integers in list/string")
-        
-    #checks that inputs are binary
-    if inputs not in (0,1):
-        raise ValueError("All inputs must be binary (0 or 1)")
-        
+    inputs = input_checker(args)
     #performs operation
-    if inputs == 0:
+    if inputs == [0]:
         return 1
-    else:
+    elif inputs == [1]:
         return 0
+    
+
+def NOTS_gate(*args):
+    """
+    Flexible gate.
+    Computes the NOT operation on any number of bits.
+    
+    Args:
+        *args: Any number of integers (0 and 1) or a single list/string containing these integers. 
+        
+    Returns:
+        tuple: The input to the gate.
+    """
+    inputs = input_checker(args)
+        
+    return tuple([NOT_gate(x) for x in inputs])
+
 
 def AND_gate(*args):
     """
+    Fixed gate. 
     Computes the AND operation for two binary inputs.
     
     Args:
-        *args: Either two integers (0 or 1) or a single list containing two integers.
+        *args: Either two integers (0 or 1) or a single list/string containing two integers.
         
     Returns:
-        int: The result of the AND operation (0 or 1).
+        tuple: The result of the AND operation (0 or 1).
     """
     #checks that the inputs have a valid form
     inputs = input_checker(args)
-    
-    #checks length of input string
-    if len(inputs)!=2:
-        raise ValueError("Requires two (2) input bits")
         
     return inputs[0]&inputs[1]
 
 
 def OR_gate(*args):
     """
+    Fixed gate. 
     Computes the OR operation for two binary inputs.
     
     Args:
-        *args: Either two integers (0 or 1) or a single list containing two integers.
+        *args: Either two integers (0 or 1) or a single list/string containing two integers.
         
     Returns:
-        int: The result of the OR operation (0 or 1).
+        tuple: The result of the OR operation (0 or 1).
     """
     #checks that the inputs have a valid form
     inputs = input_checker(args)
-    
-    #checks length of input string
-    if len(inputs)!=2:
-        raise ValueError("Requires two (2) input bits")
         
     return inputs[0]|inputs[1]
 
+
 def XOR_gate(*args):
     """
+    Fixed gate
     Computes the XOR operation for two binary inputs.
     
     Args:
-        *args: Either two integers (0 or 1) or a single list containing two integers.
+        *args: Either two integers (0 or 1) or a single list/string containing two integers.
         
     Returns:
-        int: The result of the XOR operation (0 or 1).
+        tuple: The result of the XOR operation (0 or 1).
     """
     #checks that the inputs have a valid form
     inputs = input_checker(args)
-    
-    #checks length of input string
-    if len(inputs)!=2:
-        raise ValueError("Requires two (2) input bits")
         
     return inputs[0]^inputs[1]
 
-def NOR_gate(*args):
-    """
-    Computes the NOR operation for two binary inputs.
-    
-    Args:
-        *args: Either two integers (0 or 1) or a single list containing two integers.
-        
-    Returns:
-        int: The result of the NOR operation (0 or 1).
-    """
-    #checks that the inputs have a valid form
-    inputs = input_checker(args)
-    
-    #checks length of input string
-    if len(inputs)!=2:
-        raise ValueError("Requires two (2) input bits")
-    
-    return NOT_gate(OR_gate(inputs[0],inputs[1]))
 
-def NAND_gate(*args):
-    """
-    Computes the NAND operation for two binary inputs.
-    
-    Args:
-        *args: Either two integers (0 or 1) or a single list containing two integers.
-        
-    Returns:
-        int: The result of the NAND operation (0 or 1).
-    """
-    #checks that the inputs have a valid form
-    inputs = input_checker(args)
-    
-    #checks length of input string
-    if len(inputs)!=2:
-        raise ValueError("Requires two (2) input bits")
-        
-    return NOT_gate(AND_gate(inputs[0],inputs[1]))
