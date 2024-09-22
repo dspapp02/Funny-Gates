@@ -1,9 +1,13 @@
 # Changelog
+## [0.4.1] - 2024-09-21
+### Changed
+- Moved input validation into class Gates call to streamline the design of custom gates
+- Changed license to the Mozilla Public License 2.0
+
 ## [0.4.0] - 2024-09-20
 ### Added
 - Identity gate
 - NOTS gate
-- Basic functionality to build gates
 
 ### Changed
 - Gate class supports gates with undefined numbers of inputs
@@ -33,4 +37,4 @@
 - Documentation
 - More gates
 - Building gates
--- Implement input checker into Gates class to streamline gate building process
+

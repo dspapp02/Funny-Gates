@@ -4,25 +4,42 @@ from funny_gates.helper_functions import input_checker
 import pandas as pd
 
 class Gates:
+    """A class to represent a gate object. These simulate the actions of logic gates.
+
+    A Gates object can be called with a tuple, list or string of bits as input and will return the output of the gate.
+
+    Methods:
+        inputs: Gets the number of input bits for a certain gate
+        truth: Prints the truth table of a gate as a Pandas dataframe"""
     def __init__(self, func, inputs = None, outputs = None):
+        """Initialises the Gates object.
+        
+        Args:
+            func: The function that the gate will perform. This should be a Python function that takes a list of bits as input.
+            inputs: The number of input bits for the gate. If the gate is flexible, this should be None.
+            outputs: The number of output bits for the gate. If the gate is flexible, this should be None."""
         self.func = func
         self.fixed = inputs
                 
-    def __call__(self,*args):
-        """Evaluates the gate with the specified inputs""" 
-        #checks that the correct number of bits are parsed
+    def __call__(self,*args): 
+        """Calls the function of the gate object."""
+
+        #checks the input format is valid and standardises to a list
+        list_of_bits = input_checker(args)
+        #checks that the correct number of bits are put as argument
         if not self.fixed == None:
-            inputs = len(input_checker(args))
-            if self.fixed!=inputs:
+            num_inputs = len(list_of_bits)
+            if self.fixed!=num_inputs:
                 raise ValueError(f"Gate requires ({self.fixed}) input bits")
-        return self.func(args)
+        
+        return self.func(list_of_bits)
     
     def inputs(self, *args):
         """Gets the number of input bits for a certain gate
         
         Args:
             *args: For fixed gates, no additional arguments are required.
-            *args: For flexible gates, specify the number of input bits. 
+            *args: For flexible gates, int for the number of input bits. 
         
         Returns:
             int: The number of input bits """ 
@@ -35,7 +52,7 @@ class Gates:
             elif len(args) != 1 or not isinstance(args[0], int): #if the flexible gate has too many or too few arguments
                 raise ValueError("Input validation failed: Flexible gates require the number of input bits to be specified as an integer.")
         else:                             #catch all for edge cases
-            raise ValueError("Input validation failed: Ensure that fixed gates have no additional inputs, and flexible gates are provided with exactly one integer")
+            raise ValueError("Input validation failed: Ensure that fixed gates have no additional inputs, and flexible gates are provided with exactly one integer.")
         
         return num_bits
     
@@ -48,6 +65,7 @@ class Gates:
         
         Returns:
             Dataframe: Truth table for the specified gate.  """
+        #determines number of input bits for flexible gates and fixed gates
         if self.fixed == None:
             if len(args) != 1 or not isinstance(args[0], int):
                 raise ValueError("Input validation failed: Flexible gates require the number of bits to be specified as an integer.")
@@ -60,8 +78,10 @@ class Gates:
         numbers = [x for x in range(2**num_bits)]
         #converts decimal to bit string
         bits = [format(i, f"0{num_bits}b") for i in numbers]
+        #converts bit string to lists of bits
+        bits_in_list = [[int(y) for y in x] for x in bits]
         #runs bit strings through gate
-        outputs = [self.func(x) for x in bits]   
+        outputs = [self.func(x) for x in bits_in_list]   
         
         
         truth_table = pd.DataFrame({
@@ -70,7 +90,7 @@ class Gates:
         
         return truth_table
         
-        
+# Convert all Python functions to Gates objects  
 Identity = Gates(bg.Identity_gate)
 NOT = Gates(bg.NOT_gate,1,1)
 NOTS = Gates(bg.NOTS_gate)

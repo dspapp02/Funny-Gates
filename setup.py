@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="Funny Gates",
-    version="0.4.0",
+    version="0.4.1",
     install_requires=[
         'pandas'  
     ],
@@ -12,7 +12,7 @@ setup(
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Unlicense",
+        "License :: OSI Approved :: Mozilla Public License 2.0",
         "Operating System :: OS Independent",
     ],
 )
