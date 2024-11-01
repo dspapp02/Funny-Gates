@@ -3,81 +3,81 @@ from funny_gates.helper_functions import input_checker
 
 # Gates that rely on the basic gates
 
-def NOR_gate(list_of_bits):
+def NOR_gate(a,b):
     """
     Fixed gate.
     Computes the NOR operation for two binary inputs.
     
     Args:
-        list_of_bits: List containing two integers (0 or 1). These are the input bits.
+        *args: A string, list or tuple containing a sequence of two binary bits (0 or 1).
         
     Returns:
-        tuple: The result of the NOR operation (0 or 1).
+        int: The result of the NOR operation (0 or 1).
     """
-    return NOT_gate([OR_gate(list_of_bits)])
+    return NOT_gate(OR_gate(a,b))
 
-def NAND_gate(list_of_bits):
+def NAND_gate(a,b):
     """
     Fixed gate.
     Computes the NAND operation for two binary inputs.
     
     Args:
-        list_of_bits: List containing two integers (0 or 1). These are the input bits.
+        *args: A string, list or tuple containing a sequence of two binary bits (0 or 1).
         
     Returns:
-        tuple: The result of the NAND operation (0 or 1).
+        int: The result of the NAND operation (0 or 1).
     """
-    return NOT_gate([AND_gate(list_of_bits)])
+    return NOT_gate(AND_gate(a,b))
 
 
-def HA_gate(list_of_bits):
+def HA_gate(a,b):
     """
     Fixed gate. 
     Computes the Half-Adder operation for two binary inputs.
     
     Args:
-        list_of_bits: List containing two integers (0 or 1). These are the input bits.
+        *args: A string, list or tuple containing a sequence of three binary bits (0 or 1).
         
     Returns:
         tuple: The result of the Half-Adder Operation; (Value, Carry).
     """
-    return XOR_gate(list_of_bits),AND_gate(list_of_bits)
+    return XOR_gate(a,b),AND_gate(a,b)
 
 
-def FA_gate(list_of_bits):
+def FA_gate(a,b,c):
     """
     Fixed gate.
-    Computes the Full-Adder operation for two binary inputs.
+    Computes the Full-Adder operation for three binary inputs.
     
     Args:
-        list_of_bits: List containing three integers (0 or 1). These are the input bits.
+        *args: Either three integers (0 or 1) or a single list/string containing three integers.
         
     Returns:
-        tuple: The result of the Half-Adder operation; (Value, Carry).
+        tuple: The result of the Full-Adder operation; (Value, Carry).
     """
-    var1 = HA_gate([list_of_bits[0],list_of_bits[1]])
-    var2 = HA_gate([list_of_bits[2],var1[0]])
-    var3 = OR_gate([var2[1],var1[1]])
+    var1 = HA_gate(a,b)
+    var2 = HA_gate(c,var1[0])
+    var3 = OR_gate(var2[1],var1[1])
     
     return var2[0],var3
 
 
-def TOF_gate(list_of_bits):
+def TOF_gate(a,b,c):
     """
     Fixed gate.
     Computes the Classical Toffoli operation for three binary inputs. 
     Also knwon as a reversible AND gate. 
     
     Args:
-        list_of_bits: List containing three integers (0 or 1). These are the input bits.
+        *args: A string, list or tuple containing a sequence of three binary bits (0 or 1).
         
     Returns:
-        tuple: The result of the Toffoli operation. If the input indexed as [2] is zero, will return (a, b, AND(a,b)).
+        tuple: The result of the Toffoli operation. If input c is zero, will return (a, b, AND(a,b)).
     """
-    
     #In general, the third ouput is XOR(c,AND(a,b))
 
-    gate1 = AND_gate([list_of_bits[0],list_of_bits[1]])
-    gate2 = XOR_gate([gate1,list_of_bits[2]])
+    #Performs operation
+    gate1 = AND_gate(a,b)
+    gate2 = XOR_gate(gate1,c)
     
-    return list_of_bits[0],list_of_bits[1],gate2
+    return a,b,gate2

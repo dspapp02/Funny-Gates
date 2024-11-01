@@ -1,4 +1,14 @@
 # Changelog
+## [0.4.2] - 2024-09-21
+### Added 
+- ANDS gate
+- ORS gate
+
+### Changed
+- Changed gate functions to accept separate parameters to streamline the design of custom gates
+- Gates objects now inherit the original function's docstring
+- Updated docstrings to reflect Gates object's functions
+
 ## [0.4.1] - 2024-09-21
 ### Changed
 - Moved input validation into class Gates call to streamline the design of custom gates
@@ -37,4 +47,6 @@
 - Documentation
 - More gates
 - Building gates
+-- Sum of Products methods to build gate
+-- K-map to simplify?
 
