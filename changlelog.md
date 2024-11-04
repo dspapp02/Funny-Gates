@@ -1,5 +1,12 @@
 # Changelog
-## [0.4.2] - 2024-09-21
+## [0.5.0] - 2024-11-04
+### Added 
+- Gate maker to convert a dataframe to Gates object, using SOP, for single output gates
+
+### Changed
+- Compressed gate logic where possible
+
+## [0.4.2] - 2024-11-01
 ### Added 
 - ANDS gate
 - ORS gate
@@ -47,6 +54,6 @@
 - Documentation
 - More gates
 - Building gates
--- Sum of Products methods to build gate
--- K-map to simplify?
+-- Other algorithms
+
 

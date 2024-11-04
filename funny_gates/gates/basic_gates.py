@@ -24,10 +24,7 @@ def NOT_gate(a):
         int: The result of the NOT operation (0 or 1).
     """
 
-    if a == 0:
-        return 1
-    elif a == 1:
-        return 0
+    return 1 if a == 0 else 0
     
 def NOTS_gate(*args):
     """
@@ -68,10 +65,7 @@ def ANDS_gate(*args):
     Returns:
         tuple: The result of the AND operation for all input bits.
     """
-    if all(x == 1 for x in args):
-        return 1
-    else: 
-        return 0
+    return 1 if all(args) == 1 else 0
 
 
 def OR_gate(a,b):
@@ -99,10 +93,7 @@ def ORS_gate(*args):
     Returns:
         tuple: The result of the OR operation for all input bits.
     """
-    if any(x == 1 for x in args):
-        return 1
-    elif all(x == 0 for x in args): 
-        return 0
+    return 1 if any(args) == 1 else 0
 
 
 def XOR_gate(a,b):

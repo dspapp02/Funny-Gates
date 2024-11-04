@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="Funny Gates",
-    version="0.4.2",
+    version="0.5.0",
     install_requires=[
         'pandas'  
     ],
